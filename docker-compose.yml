@@ -1,0 +1,17 @@
+services:
+  weaviate:
+    image: cr.weaviate.io/semitechnologies/weaviate:1.27.0
+    ports:
+      - 8090:8080
+      - 50051:50051
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      ENABLE_MODULES: 'text2vec-ollama,reranker-transformers,generative-ollama'
+      RERANKER_INFERENCE_API: 'http://reranker-transformers:8080'
+      CLUSTER_HOSTNAME: 'node1'
+  reranker-transformers:
+    image: cr.weaviate.io/semitechnologies/reranker-transformers:cross-encoder-ms-marco-MiniLM-L-6-v2
+    environment:
+      ENABLE_CUDA: '0'
