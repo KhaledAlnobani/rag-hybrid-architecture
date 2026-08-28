@@ -67,12 +67,11 @@ At a high level:
 - joblib
 - tqdm
 
-The pipeline uses:
-
-- `text2vec-ollama` for embeddings
-- `generative-ollama` for LLM generation
-- `reranker-transformers` for re-ranking
-
+### Models
+- **Embedding**: `nomic-embed-text` (via `text2vec-ollama`)
+- **Generation / Query Rewriting**: `qwen2.5` (via `generative-ollama`)
+- **Reranking**: `cross-encoder-ms-marco-MiniLM-L-6-v2` (via `reranker-transformers`)
+  
 ---
 
 ## Prerequisites
